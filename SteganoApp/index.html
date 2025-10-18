@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Esteganografía LSB</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Esteganografía LSB en el Navegador</h1>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="hideTab">Ocultar</button>
+      <button class="tab-btn" data-tab="revealTab">Revelar</button>
+    </div>
+
+    <section id="hideTab" class="tab-content active">
+      <h2>Ocultar mensaje</h2>
+      <label>Imagen (PNG):</label>
+      <input type="file" id="hideImage" accept="image/png">
+
+      <label>Canales a usar:</label>
+      <div class="channel-options">
+        <label><input type="checkbox" class="hideChannel" value="r" checked> Rojo</label>
+        <label><input type="checkbox" class="hideChannel" value="g"> Verde</label>
+        <label><input type="checkbox" class="hideChannel" value="b"> Azul</label>
+      </div>
+
+      <label>Mensaje a ocultar:</label>
+      <textarea id="secretMessage" placeholder="Escribe aquí tu mensaje..."></textarea>
+      <button id="hideBtn">Ocultar y descargar imagen</button>
+    </section>
+
+    <section id="revealTab" class="tab-content">
+      <h2>Revelar mensaje</h2>
+      <label>Imagen con mensaje (PNG):</label>
+      <input type="file" id="revealImage" accept="image/png">
+
+      <label>Canales a leer:</label>
+      <div class="channel-options">
+        <label><input type="checkbox" class="revealChannel" value="r" checked> Rojo</label>
+        <label><input type="checkbox" class="revealChannel" value="g"> Verde</label>
+        <label><input type="checkbox" class="revealChannel" value="b"> Azul</label>
+      </div>
+
+      <button id="revealBtn">Revelar mensaje</button>
+      <textarea id="revealedMessage" readonly placeholder="Aquí aparecerá el mensaje..."></textarea>
+      <button id="downloadTextBtn" style="display:none;">Descargar mensaje</button>
+    </section>
+
+  </div>
+
+  <canvas id="canvas"></canvas>
+
+  <script src="app.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+
+</html>

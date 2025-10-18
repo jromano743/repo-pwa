@@ -1,0 +1,112 @@
+:root {
+    --bg: #f0f2f5;
+    --card: #ffffff;
+    --primary: #4CAF50;
+    --primary-dark: #3e9c43;
+    --primary-active: #144917;
+    --border: #ddd;
+}
+body {
+    font-family: "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    margin: 0;
+    padding: 30px;
+}
+.container {
+    max-width: 950px;
+    margin: auto;
+    background: var(--card);
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: #333;
+}
+section {
+    margin-bottom: 35px;
+}
+h2 {
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 6px;
+    margin-bottom: 18px;
+    color: #444;
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+textarea {
+    resize: vertical;
+    min-height: 120px;
+    max-height: 220px;
+    overflow-y: auto;
+}
+.channel-options {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+.channel-options label {
+    font-weight: normal;
+}
+button {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+button:hover {
+    background: var(--primary-dark);
+}
+#downloadTextBtn { margin-top: 10px; }
+canvas { display: none; }
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border);
+}
+
+.tab-btn {
+    flex: 1;
+    background: var(--primary);
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: 0.2s;
+    margin: 10px;
+}
+
+.tab-btn.active {
+    border-bottom: 3px solid var(--primary-active);
+    font-weight: bold;
+}
+
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
