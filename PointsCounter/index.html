@@ -1,0 +1,74 @@
+<!--
+PWA: PQA (Puntos por participante)
+Files included in this single document:
+  - index.html (below)
+  - manifest.json (after the HTML)
+  - service-worker.js (after the manifest)
+
+To use: save the HTML part as index.html, save manifest.json and service-worker.js as separate files (names shown), serve via HTTPS or localhost, open the page, and allow the service worker to register. The app is mobile-optimized and stores participants in localStorage.
+-->
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <meta name="description" content="PWA simple para gestionar puntos de participantes y exportar top 10 como imagen">
+  <title>Contador de puntos</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2563eb">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div>
+        <h1>Contador de puntos</h1>
+        <div class="subtitle">Crear participantes, asignar puntos y exportar el top 10 como imagen</div>
+      </div>
+    </header>
+
+    <section class="card">
+      <div style="display:flex;gap:8px;align-items:center;justify-content:space-between;">
+        <strong>Nuevo participante</strong>
+        <div class="note">Los cambios se guardan localmente</div>
+      </div>
+      <div style="margin-top:8px" class="new-participant">
+        <input id="nameInput" placeholder="Nombre del participante" aria-label="Nombre">
+        <button id="addBtn" class="btn">Agregar</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <strong>Participantes</strong>
+        <div class="note">Toca el nombre para editar. Mantén presionado para eliminar (confirmación).</div>
+      </div>
+      <div id="list" class="list" style="margin-top:10px"></div>
+    </section>
+
+    <section class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <strong>Exportar Top 10</strong>
+          <div class="note">Ordenado por puntos (mayor a menor)</div>
+        </div>
+        <div class="export-area">
+          <button id="exportBtn" class="btn">Exportar imagen</button>
+        </div>
+      </div>
+    </section>
+
+    <footer>Hecho con ❤️ — PWA ligera</footer>
+  </div>
+
+  <script src="app.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+  
+</body>
+</html>

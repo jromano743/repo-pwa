@@ -1,0 +1,190 @@
+/* Mobile-first responsive CSS */
+:root {
+    --bg: #0f172a;
+    /* dark navy */
+    --card: #0b1220;
+    --accent: #2563eb;
+    --muted: #94a3b8;
+    --glass: rgba(255, 255, 255, 0.03);
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+    color: #e6eef8;
+    background: linear-gradient(180deg, var(--bg), #071022);
+    display: flex;
+    align-items: stretch;
+}
+
+.app {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px
+}
+
+h1 {
+    font-size: 1.1rem;
+    margin: 0
+}
+
+.subtitle {
+    font-size: 0.78rem;
+    color: var(--muted)
+}
+
+.card {
+    background: linear-gradient(180deg, var(--card), #071226);
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+}
+
+/* form */
+.new-participant {
+    display: flex;
+    gap: 8px
+}
+
+.new-participant input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: transparent;
+    color: inherit
+}
+
+.btn {
+    appearance: none;
+    border: 0;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: white;
+    font-weight: 600
+}
+
+.btn.ghost {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--muted)
+}
+
+/* participants list */
+.list {
+    display: grid;
+    gap: 8px;
+    margin-top: 8px
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--glass)
+}
+
+.left {
+    display: flex;
+    gap: 12px;
+    align-items: center
+}
+
+.avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #1f2937, #111827);
+    font-weight: 700
+}
+
+.name {
+    font-size: 0.95rem
+}
+
+.points {
+    font-weight: 700;
+    font-size: 1rem
+}
+
+.controls {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap
+}
+
+.controls button {
+    min-width: 44px;
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: 700
+}
+
+.small {
+    padding: 6px 8px;
+    font-size: 0.95rem
+}
+
+/* export area */
+.export-area {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between
+}
+
+.note {
+    font-size: 0.82rem;
+    color: var(--muted)
+}
+
+/* responsive */
+@media(min-width:720px) {
+    h1 {
+        font-size: 1.4rem
+    }
+
+    .avatar {
+        width: 56px;
+        height: 56px
+    }
+
+    .btn {
+        padding: 12px 14px
+    }
+}
+
+footer {
+    margin-top: auto;
+    color: var(--muted);
+    font-size: 0.78rem;
+    text-align: center;
+    padding: 8px
+}

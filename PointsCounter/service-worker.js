@@ -1,4 +1,4 @@
-const CACHE_NAME = 'stegano_v1';
+const CACHE_NAME = 'points_counter_v1';
 const ASSETS = [
   '/',
   '/index.html',
