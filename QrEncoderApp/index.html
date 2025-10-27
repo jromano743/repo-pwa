@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PWA - Generador de QR</title>
+  <meta name="theme-color" content="#4CAF50" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <div class="container">
+    <h1>Generador de QR</h1>
+
+    <section id="config">
+      <h2>Configuración</h2>
+      <label for="text">Texto o URL</label>
+      <input id="text" type="text" placeholder="https://example.com" value="https://example.com" />
+
+      <label for="size">Tamaño (px)</label>
+      <input id="size" type="range" min="128" max="1024" value="256" />
+      <p>Tamaño: <span id="sizeVal">256</span> px</p>
+
+      <label>Color primer plano</label>
+      <input id="fg" type="color" value="#000000" />
+
+      <label>Color fondo</label>
+      <input id="bg" type="color" value="#ffffff" />
+
+      <button id="gen">Generar QR</button>
+      <button id="download">Descargar PNG</button>
+      <button id="copy">Copiar imagen</button>
+    </section>
+
+    <section id="preview-section">
+      <h2>Previsualización</h2>
+      <div id="qrContainer" class="qr-wrap"></div>
+    </section>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="app.js"></script>
+    <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>
