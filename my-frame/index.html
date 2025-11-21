@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>My Frame</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>My Frame</h1>
+
+<form id="formEntrada">
+  <textarea id="texto" placeholder="Escribe tu entrada..." required></textarea><br>
+  <button type="submit">Agregar Entrada</button>
+  <!-- <button id="btn_emotion" class="btn">Feliz</button> -->
+  <br>
+  <label for="fotos" class="btn label-btn">Seleccionar fotos</label>
+  <input type="file" id="fotos" accept="image/*" multiple style="display:none;">
+  <br>
+  <!-- <button type="button" id="exportar">Exportar JSON</button> -->
+  <button type="button" id="exportarPDF">Exportar PDF</button>
+  
+</form>
+
+<div id="listaEntradas"></div>
+
+<!-- Modal con animacion -->
+<div id="modalImagen" class="modal">
+  <div class="modal-content">
+    <span id="cerrarModal" class="close-btn">&times;</span>
+    <img id="modalImg" src="" alt="Vista completa">
+  </div>
+</div>
+
+<!-- Contenedor invisible para html2canvas (si se necesitara) -->
+<div id="image-container" style="position:absolute; left:-9999px; top:-9999px;"></div>
+
+<!-- Librerias para PDF -->
+<script src="libs/jspdf.umd.js"></script>
+<script src="app.js"></script>
+
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js');
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+/* Hoja generica para Repo-PWA */
+
+:root {
+    --bg: #f0f2f5;
+    --card: #ffffff;
+    --primary: #4CAF50;
+    --primary-dark: #3e9c43;
+    --primary-active: #144917;
+    --border: #ddd;
+    --text-color: #333;
+    --muted: #444;
+    --shadow: rgba(0,0,0,0.08);
+    --radius: 12px;
+    --input-radius: 6px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text-color);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 950px;
+    width: 100%;
+    margin: auto;
+    background: var(--card);
+    padding: 25px 30px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 18px var(--shadow);
+}
+
+/* Encabezados */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--text-color);
+}
+
+h2 {
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 6px;
+    margin-bottom: 18px;
+    color: var(--muted);
+}
+
+/* Secciones */
+section {
+    margin-bottom: 35px;
+}
+
+/* Textos y párrafos */
+p {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+small, .muted {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+/* Formularios */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="color"],
+input[type="range"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border);
+    border-radius: var(--input-radius);
+    font-size: 15px;
+    background: #fff;
+    color: var(--text-color);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Botones */
+button, .btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--input-radius);
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    display: inline-block;
+}
+
+button:hover, .btn:hover {
+    background: var(--primary-dark);
+}
+
+button.ghost, .btn.ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+}
+
+/* Listas y tablas */
+ul, ol {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid var(--border);
+    padding: 10px;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+table th {
+    background: #f9f9f9;
+}
+
+/* Tarjetas */
+.card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: 0 6px 18px var(--shadow);
+    margin-bottom: 20px;
+}
+
+/* Previews, modales y contenedores internos */
+.preview, .modal, .popup {
+    background: var(--card);
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 6px 18px var(--shadow);
+    text-align: center;
+}
+
+/* Imagenes */
+img {
+    max-width: 100%;
+    border-radius: var(--radius);
+}
+
+/* Formularios */
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+/* Controles flexibles */
+.flex {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* Responsive */
+@media (min-width: 720px) {
+    .container {
+        padding: 30px 40px;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    input, textarea, select {
+        font-size: 16px;
+    }
+    
+    button, .btn {
+        padding: 14px 24px;
+        font-size: 17px;
+    }
+}
