@@ -1,5 +1,5 @@
 {
-  "name": "PointsCounter",
+  "name": "Points Counter",
   "short_name": "PointsCounter",
   "start_url": "index.html",
   "display": "standalone",

@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>My Frame</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -10,16 +11,22 @@
 <h1>My Frame</h1>
 
 <form id="formEntrada">
-  <textarea id="texto" placeholder="Escribe tu entrada..." required></textarea><br>
-  <button type="submit">Agregar Entrada</button>
-  <!-- <button id="btn_emotion" class="btn">Feliz</button> -->
-  <br>
-  <label for="fotos" class="btn label-btn">Seleccionar fotos</label>
-  <input type="file" id="fotos" accept="image/*" multiple style="display:none;">
-  <br>
-  <!-- <button type="button" id="exportar">Exportar JSON</button> -->
-  <button type="button" id="exportarPDF">Exportar PDF</button>
-  
+  <textarea id="texto" placeholder="Escribe tu entrada..." required></textarea>
+
+  <div class="button-group">
+    <label for="fotos" class="btn-fake">
+       📷 Seleccionar fotos
+    </label>
+    <input type="file" id="fotos" accept="image/*" multiple style="display:none;">
+
+    <button type="submit" class="btn-real">
+      Guardar Entrada
+    </button>
+  </div>
+
+  <button type="button" id="exportarPDF" class="btn-outline">
+    Exportar PDF
+  </button>
 </form>
 
 <div id="listaEntradas"></div>

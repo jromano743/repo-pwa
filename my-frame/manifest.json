@@ -1,6 +1,6 @@
 {
-  "name": "Diario",
-  "short_name": "DiarioApp",
+  "name": "My Frame",
+  "short_name": "MyFrame",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
