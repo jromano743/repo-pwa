@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encoder / Decoder</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>Encoder / Decoder</h1>
+
+    <section id="formEntrada">
+
+      <label>Texto:</label>
+      <textarea id="inputText" placeholder="Escribe o pega texto aquí..."></textarea>
+      <small id="inputStats" style="display:block;margin-bottom:15px;color:var(--text-dim);">
+        0 caracteres · 0 bytes
+      </small>
+
+      <label>Algoritmo:</label>
+      <select id="algorithm" style="margin-bottom:15px;height:50px;border-radius:15px;padding:10px;background:#2c2c2c;color:white;border:2px solid #333;font-size:16px;">
+        <option value="binary">Binario</option>
+        <option value="base64">Base64</option>
+        <option value="hex">Hex</option>
+        <option value="url">URL Encode</option>
+        <option value="html">HTML Entities</option>
+        <option value="rot13">ROT13</option>
+      </select>
+
+      <div style="margin-bottom:20px;">
+        <label style="display:flex;align-items:center;gap:10px;font-size:16px;">
+          <input type="checkbox" id="modeToggle" style="width:20px;height:20px;">
+          Decodificar
+        </label>
+      </div>
+
+      <div class="button-group">
+        <button id="processBtn">Procesar</button>
+      </div>
+
+    </section>
+
+    <section class="entrada">
+
+      <strong>Resultado</strong>
+      <textarea id="outputText" readonly placeholder="Aquí aparecerá el resultado..."></textarea>
+      <small id="outputStats" style="display:block;margin-bottom:15px;color:var(--text-dim);">
+        0 caracteres · 0 bytes
+      </small>
+
+      <div class="button-group">
+        <button id="copyBtn" class="btn-fake">Copiar</button>
+        <button id="exportBtn" class="btn-outline">Exportar .txt</button>
+      </div>
+
+    </section>
+
+  </div>
+
+  <script src="app.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+</body>
+</html>
