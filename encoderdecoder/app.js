@@ -22,7 +22,7 @@ function textToHex(text) {
 
 function hexToText(hex) {
   const clean = hex.replace(/\s+/g, '');
-  const bytes = clean.match(/.{1,2}/g).map(b => parseInt(b, 16));
+  const bytes = clean.match(/.{1,2}/g)?.map(b => parseInt(b, 16)) || [];
   return decoder.decode(new Uint8Array(bytes));
 }
 
@@ -80,30 +80,31 @@ function processText() {
   try {
     if (!decode) {
       if (algorithm === "binary") result = textToBinary(input);
-      if (algorithm === "base64") result = toBase64UTF8(input);
-      if (algorithm === "hex") result = textToHex(input);
-      if (algorithm === "url") result = urlEncode(input);
-      if (algorithm === "html") result = htmlEncode(input);
-      if (algorithm === "rot13") result = rot13(input);
+      else if (algorithm === "base64") result = toBase64UTF8(input);
+      else if (algorithm === "hex") result = textToHex(input);
+      else if (algorithm === "url") result = urlEncode(input);
+      else if (algorithm === "html") result = htmlEncode(input);
+      else if (algorithm === "rot13") result = rot13(input);
     } else {
       if (algorithm === "binary") result = binaryToText(input);
-      if (algorithm === "base64") result = fromBase64UTF8(input);
-      if (algorithm === "hex") result = hexToText(input);
-      if (algorithm === "url") result = urlDecode(input);
-      if (algorithm === "html") result = htmlDecode(input);
-      if (algorithm === "rot13") result = rot13(input); // mismo método
+      else if (algorithm === "base64") result = fromBase64UTF8(input);
+      else if (algorithm === "hex") result = hexToText(input);
+      else if (algorithm === "url") result = urlDecode(input);
+      else if (algorithm === "html") result = htmlDecode(input);
+      else if (algorithm === "rot13") result = rot13(input);
     }
   } catch (e) {
     result = "Error en conversión";
   }
 
   document.getElementById("outputText").value = result;
+  updateStats();
 }
 
 // -------- COPIAR --------
 function copyToClipboard() {
-  const output = document.getElementById("outputText");
-  navigator.clipboard.writeText(output.value);
+  const output = document.getElementById("outputText").value;
+  navigator.clipboard.writeText(output);
 }
 
 // -------- EXPORTAR --------
@@ -114,15 +115,10 @@ function exportToFile() {
   a.href = URL.createObjectURL(blob);
   a.download = "resultado.txt";
   a.click();
-}
-
-// -------- SERVICE WORKER --------
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
+  URL.revokeObjectURL(a.href);
 }
 
 // -------- CONTADORES --------
-
 function updateStats() {
   const input = document.getElementById("inputText").value;
   const output = document.getElementById("outputText").value;
@@ -137,16 +133,19 @@ function updateStats() {
     `${output.length} caracteres · ${outputBytes} bytes`;
 }
 
-// Actualizar en tiempo real
-document.getElementById("inputText").addEventListener("input", updateStats);
-document.getElementById("outputText").addEventListener("input", updateStats);
+// -------- EVENT LISTENERS --------
+window.addEventListener("load", () => {
+  document.getElementById("processBtn")
+    .addEventListener("click", processText);
 
-// También actualizar después de procesar
-const originalProcess = processText;
-processText = function() {
-  originalProcess();
+  document.getElementById("copyBtn")
+    .addEventListener("click", copyToClipboard);
+
+  document.getElementById("exportBtn")
+    .addEventListener("click", exportToFile);
+
+  document.getElementById("inputText")
+    .addEventListener("input", updateStats);
+
   updateStats();
-};
-
-// Inicializar contadores al cargar
-document.addEventListener("DOMContentLoaded", updateStats);
+});

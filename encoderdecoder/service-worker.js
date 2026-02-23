@@ -1,4 +1,4 @@
-const CACHE_NAME = 'encoderdecoder_app_v1';
+const CACHE_NAME = 'encoderdecoder_app_v1.1';
 const ASSETS = [
   './',
   './index.html',
