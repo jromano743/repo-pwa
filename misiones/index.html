@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task RPG</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div class="container">
+<h1>⚔️ Task RPG</h1>
+
+<div class="hud">
+  <div class="hud-top">
+    <span>XP <span id="xp">0</span></span>
+    <span>💰 <span id="coins">0</span></span>
+    <span>💀 <span id="fails">0</span></span>
+    <span>🔥 <span id="streak">0</span></span>
+    <span>Lvl <span id="level">1</span></span>
+  </div>
+  <div class="xp-bar"><div id="xpFill" class="xp-fill"></div></div>
+</div>
+
+<div id="formEntrada">
+  <textarea id="texto" placeholder="Nueva misión..."></textarea>
+  <label class="checkbox">
+    <input type="checkbox" id="isDaily" />
+    <span></span> Diario
+  </label>
+  <button onclick="addTask()">Agregar</button>
+</div>
+
+<div class="section">
+  <div class="section-header">📅 Diarias</div>
+  <div id="dailyList"></div>
+</div>
+
+<div class="section">
+  <div class="section-header">📌 Misiones</div>
+  <div id="taskList"></div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    🛒 Tienda 
+    <button onclick="openModal()">+ Item</button>
+  </div>
+  <div id="shop"></div>
+</div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <textarea id="newItemName" placeholder="Nombre"></textarea>
+    <textarea id="newItemCost" placeholder="Costo"></textarea>
+    <button onclick="addShopItem()">Guardar</button>
+    <button onclick="closeModal()">Cancelar</button>
+  </div>
+</div>
+
+<script>
+
+// ================= STATE =================
+let state = JSON.parse(localStorage.getItem('state')) || {};
+
+state.xp = state.xp || 0;
+state.coins = state.coins || 0;
+state.fails = state.fails || 0;
+state.tasks = state.tasks || [];
+state.shop = state.shop || [];
+state.streak = state.streak || 0;
+state.lastStreakDate = state.lastStreakDate || null;
+
+// guardamos fecha en formato YYYY-MM-DD
+state.lastReset = state.lastReset || new Date().toISOString().split('T')[0];
+
+// ================= INIT SHOP =================
+if(state.shop.length === 0){
+  state.shop = [
+    {id:1,name:'☕ +5 XP',cost:50,effect:'xp'},
+    {id:2,name:'💎 +100 monedas',cost:100,effect:'coins'},
+    {id:3,name:'🧹 -1 derrota',cost:30,effect:'fail'}
+  ];
+}
+
+// ================= HELPERS =================
+function save(){
+  localStorage.setItem('state', JSON.stringify(state));
+}
+
+function lvl(){
+  return Math.floor(state.xp / 10) + 1;
+}
+
+function xpProgress(){
+  return (state.xp % 10) * 10;
+}
+
+// ================= RESET DIARIO =================
+function resetDaily(){
+  const today = new Date().toISOString().split('T')[0];
+
+  if(state.lastReset !== today){
+    state.tasks.forEach(t => {
+      if(t.daily){
+        t.completed = false;
+      }
+    });
+
+    state.lastReset = today;
+    save();
+  }
+}
+
+// ================= STREAK =================
+function handleStreak(){
+  const today = new Date().toISOString().split('T')[0];
+
+  if(state.lastStreakDate === today) return;
+
+  const yesterday = new Date(Date.now() - 86400000)
+    .toISOString().split('T')[0];
+
+  if(state.lastStreakDate === yesterday){
+    state.streak++;
+  } else {
+    state.streak = 1;
+  }
+
+  state.lastStreakDate = today;
+}
+
+// ================= TASKS =================
+function addTask(){
+  let t = texto.value;
+  let d = isDaily.checked;
+
+  if(!t) return;
+
+  state.tasks.push({
+    id: Date.now(),
+    text: t,
+    daily: d,
+    completed: false
+  });
+
+  texto.value = '';
+  save();
+  render();
+}
+
+function completeTask(id){
+  let t = state.tasks.find(x => x.id === id);
+  if(!t) return;
+
+  // evitar spam
+  if(t.daily && t.completed) return;
+
+  state.xp++;
+  state.coins += 10;
+
+  if(t.daily){
+    t.completed = true;
+    handleStreak();
+  } else {
+    state.tasks = state.tasks.filter(x => x.id !== id);
+  }
+
+  save();
+  render();
+}
+
+function failTask(id){
+  let t = state.tasks.find(x => x.id === id);
+  if(!t) return;
+
+  // no fallar diarias completadas
+  if(t.daily && t.completed) return;
+
+  state.fails++;
+  state.tasks = state.tasks.filter(t => t.id !== id);
+
+  save();
+  render();
+}
+
+function editTask(id){
+  let t = state.tasks.find(x => x.id === id);
+  if(!t) return;
+
+  if(t.daily && t.completed) return;
+
+  let n = prompt('Editar', t.text);
+  if(n) t.text = n;
+
+  save();
+  render();
+}
+
+// ================= SHOP =================
+function buyItem(id){
+  let i = state.shop.find(x => x.id === id);
+  if(!i) return;
+
+  if(state.coins < i.cost){
+    alert('Sin monedas');
+    return;
+  }
+
+  state.coins -= i.cost;
+
+  if(i.effect === 'xp') state.xp += 5;
+  if(i.effect === 'coins') state.coins += 100;
+  if(i.effect === 'fail') state.fails = Math.max(0, state.fails - 1);
+
+  save();
+  render();
+}
+
+function addShopItem(){
+  let name = newItemName.value;
+  let cost = parseInt(newItemCost.value);
+
+  if(!name || !cost) return;
+
+  state.shop.push({
+    id: Date.now(),
+    name,
+    cost,
+    effect: 'custom'
+  });
+
+  closeModal();
+  save();
+  render();
+}
+
+// ================= MODAL =================
+function openModal(){
+  modal.classList.add('active');
+}
+
+function closeModal(){
+  modal.classList.remove('active');
+}
+
+// ================= RENDER =================
+function render(){
+
+  resetDaily();
+
+  xp.innerText = state.xp;
+  coins.innerText = state.coins;
+  fails.innerText = state.fails;
+  streak.innerText = state.streak;
+  level.innerText = lvl();
+
+  xpFill.style.width = xpProgress() + '%';
+
+  dailyList.innerHTML = '';
+  taskList.innerHTML = '';
+  shop.innerHTML = '';
+
+  state.tasks.forEach(t => {
+
+    let div = document.createElement('div');
+    div.className = 'task' + (t.completed ? ' done' : '');
+
+    let disableComplete = t.daily && t.completed;
+    let disableEdit = t.daily && t.completed;
+    let disableFail = t.daily && t.completed;
+
+    div.innerHTML = `
+      <div class="task-text">${t.text}</div>
+      <div class="task-actions">
+        <button ${disableComplete ? "disabled" : ""} onclick="completeTask(${t.id})">✔</button>
+        <button ${disableFail ? "disabled" : ""} onclick="failTask(${t.id})">✖</button>
+        <button ${disableEdit ? "disabled" : ""} onclick="editTask(${t.id})">✏</button>
+      </div>
+    `;
+
+    (t.daily ? dailyList : taskList).appendChild(div);
+  });
+
+  state.shop.forEach(i => {
+    let div = document.createElement('div');
+    div.className = 'shop-item';
+
+    div.innerHTML = `
+      <span>${i.name} ($${i.cost})</span>
+      <button onclick="buyItem(${i.id})">Comprar</button>
+    `;
+
+    shop.appendChild(div);
+  });
+}
+
+render();
+
+</script>
+
+</body>
+</html>

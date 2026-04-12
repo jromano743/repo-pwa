@@ -1,0 +1,235 @@
+:root {
+  --bg: #121212;
+  --card: #1e1e1e;
+  --primary: #4CAF50;
+  --danger: #e53935;
+  --text: #ffffff;
+  --text-dim: #b0b0b0;
+  --border: #2a2a2a;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 15px;
+}
+
+/* HEADER */
+
+h1 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+/* HUD */
+
+.hud {
+  background: var(--card);
+  padding: 10px;
+  border-radius: var(--radius);
+  margin-bottom: 15px;
+}
+
+.hud-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+/* XP BAR */
+
+.xp-bar {
+  height: 6px;
+  background: #333;
+  border-radius: 10px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.xp-fill {
+  height: 100%;
+  background: var(--primary);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* FORM */
+
+textarea {
+  width: 100%;
+  background: #2c2c2c;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+  color: var(--text);
+  resize: none;
+  font-size: 14px;
+}
+
+/* CHECKBOX CUSTOM */
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.checkbox input {
+  display: none;
+}
+
+.checkbox span {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #555;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.checkbox input:checked + span {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+/* BUTTONS */
+
+button {
+  border: none;
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+button {
+  background: var(--primary);
+  color: #fff;
+}
+
+.section-header button {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+/* SECTIONS */
+
+.section {
+  margin-top: 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+/* TASKS */
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card);
+  padding: 8px 10px;
+  border-radius: var(--radius);
+  margin-bottom: 6px;
+  font-size: 14px;
+  border: 1px solid transparent;
+}
+
+.task:hover {
+  border-color: var(--border);
+}
+
+.task.done {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.task-text {
+  flex: 1;
+}
+
+.task-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.task-actions button {
+  padding: 5px 7px;
+  font-size: 12px;
+}
+
+/* SHOP */
+
+.shop-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card);
+  padding: 8px 10px;
+  border-radius: var(--radius);
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+/* MODAL */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-box {
+  background: var(--card);
+  padding: 15px;
+  border-radius: var(--radius);
+  width: 90%;
+  max-width: 400px;
+}
+
+.modal-box textarea {
+  margin-bottom: 8px;
+}
