@@ -1,22 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Repo PWA</title>
+    <style>
+        /* Estilos proporcionados */
+        :root {
+            --bg: #f0f2f5;
+            --card: #ffffff;
+            --primary: #4CAF50;
+            --primary-dark: #3e9c43;
+            --primary-active: #144917;
+            --border: #ddd;
+        }
+        body {
+            font-family: "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 950px;
+            margin: auto;
+            background: var(--card);
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+            color: #333;
+        }
+        section {
+            margin-bottom: 35px;
+        }
+        h2 {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 6px;
+            margin-bottom: 18px;
+            color: #444;
+        }
+        
+        /* Estilos para la lista de apps adaptados al diseño */
+        .app-list {
+            list-style: none;
+            padding: 0;
+        }
+        .app-list li {
+            margin-bottom: 10px;
+        }
+        .app-list a {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            background: #fdfdfd;
+            padding: 15px 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .app-list a:hover {
+            border-color: var(--primary);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+    </style>
 </head>
 <body>
-    <h1>Un repositorio de aplicaciones PWA para descargar en Android</h1>
 
-    <h3>Apps</h3>
-    <div>
-        <ol>
-            <li><a href="./SteganoApp/index.html">Stegano App</a></li>
-            <li><a href="./PointsCounter/index.html">Points Counter</a></li>
-            <li><a href="./QrEncoderApp/index.html">Qr Encoder App</a></li>
-            <li><a href="./my-frame/index.html">My frame</a></li>
-            <li><a href="./encoderdecoder/index.html">Encoder Decoder</a></li>
-        </ol>
+    <div class="container">
+        <header>
+            <h1>Repositorio PWA</h1>
+        </header>
+
+        <section>
+            <h2>Aplicaciones Disponibles</h2>
+            <p style="color: #666; margin-bottom: 20px;">
+                Selecciona una aplicación para abrirla e instalarla en tu dispositivo Android.
+            </p>
+            
+            <ul class="app-list">
+                <li><a href="./SteganoApp/index.html">🛡️ Stegano App</a></li>
+                <li><a href="./PointsCounter/index.html">🔢 Points Counter</a></li>
+                <li><a href="./QrEncoderApp/index.html">🔳 Qr Encoder App</a></li>
+                <li><a href="./my-frame/index.html">🖼️ My frame</a></li>
+                <li><a href="./encoderdecoder/index.html">🔐 Encoder Decoder</a></li>
+            </ul>
+        </section>
+
+        <footer style="text-align: center; color: #888; font-size: 14px; margin-top: 20px;">
+            <p>Optimizado para descarga en Android</p>
+        </footer>
     </div>
+
 </body>
 </html>
