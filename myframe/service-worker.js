@@ -1,4 +1,4 @@
-const CACHE_NAME = 'qr_encoder_app_v2';
+const CACHE_NAME = 'my_frame_v2';
 const ASSETS = [
   './',
   './index.html',
@@ -6,7 +6,8 @@ const ASSETS = [
   './app.js',
   './manifest.json',
   './icons/icon-192.png',
-  './icons/icon-512.png'
+  './icons/icon-512.png',
+  './libs/jspdf.umd.js'
 ];
 
 self.addEventListener('install', event => {

@@ -1,10 +1,10 @@
 {
-  "name": "QrEncoder",
-  "short_name": "QrEncoderApp",
+  "name": "Color Picker",
+  "short_name": "Color Picker",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#ff4da6",
+  "theme_color": "#3e9c43",
   "icons": [
     {
       "src": "icons/icon-192.png",

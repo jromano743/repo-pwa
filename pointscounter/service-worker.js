@@ -1,4 +1,4 @@
-const CACHE_NAME = 'points_counter_v2';
+const CACHE_NAME = 'points_counter_v3';
 const ASSETS = [
   './',
   './index.html',

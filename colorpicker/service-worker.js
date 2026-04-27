@@ -1,4 +1,4 @@
-const CACHE_NAME = 'my_frame_v1';
+const CACHE_NAME = 'colorpicker_app_v2';
 const ASSETS = [
   './',
   './index.html',
@@ -6,8 +6,7 @@ const ASSETS = [
   './app.js',
   './manifest.json',
   './icons/icon-192.png',
-  './icons/icon-512.png',
-  './libs/jspdf.umd.js'
+  './icons/icon-512.png'
 ];
 
 self.addEventListener('install', event => {

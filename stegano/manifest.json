@@ -1,6 +1,6 @@
 {
-  "name": "Points Counter",
-  "short_name": "PointsCounter",
+  "name": "Stegano",
+  "short_name": "Stegano",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",

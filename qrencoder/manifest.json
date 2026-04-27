@@ -1,6 +1,6 @@
 {
-  "name": "My Frame",
-  "short_name": "MyFrame",
+  "name": "Qr Encoder",
+  "short_name": "Qr Encoder",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",

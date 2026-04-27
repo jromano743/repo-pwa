@@ -1,4 +1,4 @@
-const CACHE_NAME = 'colorpicker_app_v1';
+const CACHE_NAME = 'qr_encoder_app_v3';
 const ASSETS = [
   './',
   './index.html',

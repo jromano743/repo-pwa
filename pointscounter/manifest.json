@@ -1,10 +1,10 @@
 {
-  "name": "ColorPicker",
-  "short_name": "ColorPicker",
+  "name": "Points Counter",
+  "short_name": "Points Counter",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#3e9c43",
+  "theme_color": "#ff4da6",
   "icons": [
     {
       "src": "icons/icon-192.png",

@@ -1,6 +1,6 @@
 {
-  "name": "Stegano",
-  "short_name": "SteganoApp",
+  "name": "My Frame",
+  "short_name": "My Frame",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",

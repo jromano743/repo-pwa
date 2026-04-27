@@ -1,4 +1,4 @@
-const CACHE_NAME = 'stegano_v2';
+const CACHE_NAME = 'stegano_v3';
 const ASSETS = [
   './',
   './index.html',
