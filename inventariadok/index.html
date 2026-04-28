@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InventariadOK</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+    <div id="menu" class="container">
+        <h2>Inventariad<span style="color:#4CAF50">OK</span></h2>
+        <button onclick="show('newProduct')">Nuevo producto</button>
+        <button onclick="show('sale')">Nueva compra</button>
+        <button onclick="show('config')">Configuracion</button>
+        <button onclick="show('export')">Exportar</button>
+    </div>
+
+    <div id="newProduct" class="container hidden">
+        <h3>Nuevo Producto</h3>
+        <input id="name" placeholder="Nombre">
+        <input id="price" type="number" placeholder="Precio">
+        <input id="stock" type="number" placeholder="Stock">
+        <button onclick="addProduct()">Guardar</button>
+        <button onclick="back()">Volver</button>
+    </div>
+
+    <div id="sale" class="container hidden"></div>
+    <div id="config" class="container hidden"></div>
+    <div id="export" class="container hidden"></div>
+
+    <script src="libs/jspdf.umd.js"></script>
+    <script src="app.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+:root {
+    --bg: #f0f2f5;
+    --card: #ffffff;
+    --primary: #4CAF50;
+    --primary-dark: #3e9c43;
+    --primary-active: #144917;
+    --border: #ddd;
+    --text-color: #333;
+    --muted: #444;
+    --shadow: rgba(0,0,0,0.08);
+    --radius: 12px;
+    --input-radius: 6px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    width: 100%;
+    margin: 10px auto;
+    background: var(--card);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 18px var(--shadow);
+}
+
+h2, h3 {
+    margin-bottom: 15px;
+}
+
+button {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--input-radius);
+    padding: 14px;
+    margin: 8px 0;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+    font-size: 16px;
+}
+
+button:hover {
+    background: var(--primary-dark);
+}
+
+button:hover {
+    background: var(--primary-dark);
+}
+
+.hidden { display: none; }
+
+.product {
+    border: 1px solid var(--border);
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: var(--radius);
+    background: #fafafa;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.small {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--input-radius);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+
+/* Mejoras mobile botones +/- */
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.row button {
+    width: 48%;
+    font-size: 18px;
+    padding: 12px;
+}
+
+/* Animaciones suaves */
+button {
+    transition: transform 0.08s ease, background 0.2s ease;
+}
+
+button:active {
+    transform: scale(0.96);
+    background: var(--primary-active);
+}
+
+/* Feedback visual en cards */
+.product {
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.product:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 10px var(--shadow);
+}
