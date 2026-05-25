@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATS CV Builder PWA</title>
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#111827">
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="panel">
+      <h1>ATS CV Builder</h1>
+      <p class="subtitle">
+        Generador de CV con formato ATS.
+      </p>
+
+      <h2>Datos Personales</h2>
+
+      <div class="field">
+        <label>Nombre completo</label>
+        <input type="text" id="fullName" placeholder="Juan Pérez">
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="correo@ejemplo.com">
+      </div>
+
+      <div class="field">
+        <label>Teléfono</label>
+        <input type="text" id="phone" placeholder="+54 9 ...">
+      </div>
+
+      <div class="field">
+        <label>LinkedIn / Portfolio</label>
+        <input type="text" id="portfolio" placeholder="linkedin.com/in/...">
+      </div>
+
+      <div class="field">
+        <label>Descripción profesional</label>
+        <textarea id="summary" placeholder="Describe tu perfil profesional..."></textarea>
+      </div>
+
+      <h2>Experiencia Laboral</h2>
+      <div id="experienceContainer"></div>
+      <button class="btn-secondary" onclick="addExperience()">+ Agregar experiencia</button>
+
+      <h2>Educación</h2>
+      <div id="educationContainer"></div>
+      <button class="btn-secondary" onclick="addEducation()">+ Agregar educación</button>
+
+      <h2>Habilidades</h2>
+      <div id="skillsContainer"></div>
+      <button class="btn-secondary" onclick="addSkill()">+ Agregar habilidad</button>
+
+      <div class="top-actions">
+        <button class="btn-primary" onclick="generatePDF()">Generar PDF</button>
+        <button class="btn-primary" onclick="saveData()">Guardar Datos</button>
+        <button class="btn-primary" onclick="loadData()">Cargar Datos</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="preview" id="preview">
+        <h1>Vista previa del CV</h1>
+        <p>Completa el formulario para visualizar el CV.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="libs/jspdf.umd.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
