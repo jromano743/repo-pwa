@@ -14,25 +14,41 @@
 <form id="formEntrada">
   <textarea id="texto" placeholder="Escribe tu entrada..." required></textarea>
 
-  <div class="button-group">
-    <label for="fotos" class="btn-fake">
-       📷 Seleccionar fotos
-    </label>
-    <input type="file" id="fotos" accept="image/*" multiple style="display:none;">
+  <div class="form-grid">
+    <label class="field-label" for="estado">Estado</label>
+    <select id="estado">
+      <option value="">Sin estado</option>
+    </select>
 
-    <button type="submit" class="btn-real">
-      Guardar Entrada
-    </button>
+    <label class="field-label" for="actividadesToggle">Actividades</label>
+    <div class="activity-select">
+      <button type="button" id="actividadesToggle" class="select-like">Seleccionar actividades ▾</button>
+      <div id="actividadesMenu" class="activity-menu"></div>
+      <div id="actividadesResumen" class="activity-summary">Sin actividades</div>
+    </div>
   </div>
 
-  <button type="button" id="exportarPDF" class="btn-outline">
-    Exportar PDF
-  </button>
+  <div class="activity-management">
+    <button type="button" id="toggleActividades" class="btn-outline">Gestionar actividades</button>
+    <div id="gestionActividades" class="management-panel">
+      <button type="button" id="agregarActividad" class="btn-real">+ Nueva actividad</button>
+      <div id="listaActividades"></div>
+    </div>
+  </div>
+
+  <div class="button-group">
+    <label for="fotos" class="btn-fake">📷 Seleccionar fotos</label>
+    <input type="file" id="fotos" accept="image/*" multiple style="display:none;">
+
+    <button type="submit" class="btn-real">Guardar Entrada</button>
+    <button type="button" id="cancelarEdicion" class="btn-outline" hidden>Cancelar edición</button>
+  </div>
+
+  <button type="button" id="exportarPDF" class="btn-outline">Exportar PDF</button>
 </form>
 
 <div id="listaEntradas"></div>
 
-<!-- Modal con animacion -->
 <div id="modalImagen" class="modal">
   <div class="modal-content">
     <span id="cerrarModal" class="close-btn">&times;</span>
@@ -40,17 +56,8 @@
   </div>
 </div>
 
-<!-- Contenedor invisible para html2canvas (si se necesitara) -->
-<div id="image-container" style="position:absolute; left:-9999px; top:-9999px;"></div>
-
-<!-- Librerias para PDF -->
 <script src="libs/jspdf.umd.js"></script>
-<script src="app.js"></script>
+<script type="module" src="app.js"></script>
 
-<script>
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js');
-    }
-</script>
 </body>
 </html>

@@ -3,8 +3,8 @@
   "short_name": "My Frame",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ff4da6",
+  "background_color": "#121212",
+  "theme_color": "#4CAF50",
   "icons": [
     {
       "src": "icons/icon-192.png",

@@ -22,12 +22,6 @@ body {
     overflow-x: hidden;
 }
 
-.container {
-    width: 100%;
-    padding: 20px 15px;
-    max-width: 600px;
-    margin: 0 auto;
-}
 
 h1 { font-size: 26px; margin-bottom: 20px; text-align: center; }
 
@@ -184,4 +178,159 @@ button {
     display: flex;
     flex-direction: column;
     gap: 12px;
+}
+/* --- CAMPOS DE ENTRADA --- */
+.form-grid {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.field-label {
+    color: var(--text-dim);
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+#estado,
+.select-like {
+    width: 100%;
+    min-height: 50px;
+    background: #2c2c2c;
+    border: 2px solid #333;
+    border-radius: 15px;
+    color: white;
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+.select-like {
+    text-align: left;
+    cursor: pointer;
+}
+
+.activity-select { position: relative; }
+
+.activity-menu {
+    display: none;
+    position: absolute;
+    z-index: 50;
+    left: 0;
+    right: 0;
+    top: calc(100% + 5px);
+    max-height: 220px;
+    overflow-y: auto;
+    background: #252525;
+    border: 1px solid #444;
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+.activity-menu.visible { display: block; }
+
+.activity-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.activity-option:hover { background: #333; }
+.activity-option input { width: 18px; height: 18px; }
+.activity-summary { color: var(--text-dim); font-size: 13px; margin-top: 6px; }
+
+/* --- GESTIÓN DE ACTIVIDADES --- */
+.activity-management { margin-bottom: 15px; }
+.activity-management > .btn-outline { margin-top: 0; }
+.management-panel {
+    display: none;
+    background: #181818;
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 12px;
+    margin-top: 8px;
+}
+.management-panel.visible { display: block; }
+.management-panel .btn-real { height: 45px; margin-bottom: 10px; }
+.activity-management .btn-outline { height: 45px; }
+
+.activity-management-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #303030;
+}
+.activity-management-row:last-child { border-bottom: none; }
+.activity-management-row > div { display: flex; gap: 6px; }
+
+.small-btn {
+    width: auto;
+    min-width: 65px;
+    height: 34px;
+    padding: 0 10px;
+    margin: 0;
+    border-radius: 9px;
+    background: #333;
+    font-size: 12px;
+    font-weight: 700;
+}
+.small-btn.danger { background: #5a2929; }
+
+/* --- CABECERA Y ACCIONES DE ENTRADA --- */
+.entrada-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 5px;
+}
+.entrada-header strong { margin-bottom: 0; }
+.entrada-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+/* --- ESTADOS --- */
+.estado-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+}
+.estado-fatal { --estado-color: #c03737; }
+.estado-triste { --estado-color: #4b73b4; }
+.estado-meh { --estado-color: #969696; }
+.estado-feliz { --estado-color: #4baa5a; }
+.estado-alegre { --estado-color: #e6aa37; }
+.entrada { border-left: 4px solid var(--estado-color, transparent); }
+.estado-badge { background: var(--estado-color, #555); color: white; }
+
+.entrada-metadata {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #303030;
+}
+
+.actividad-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+.actividad-badge {
+    display: inline-flex;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: #333;
+    color: #d0d0d0;
+    font-size: 12px;
+}
+
+@media (max-width: 480px) {
+    .entrada-header { flex-direction: column; }
+    .entrada-actions { align-self: flex-end; }
 }
